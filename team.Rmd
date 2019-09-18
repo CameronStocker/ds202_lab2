@@ -47,3 +47,14 @@ color3 = ifelse(germany_recent$Rating > median(germany_recent$Rating), 'orange',
 plot(germany_recent$Cocoa.Pct ~ germany_recent$Review.Date,ylim=c(50,90),col=color3,pch=18,cex=1.5,xlab="Review Date", ylab= "Cocoa Percentage", main= "Germany") #Plots the cocoa percentages for Germany by year where the ones with "high ratings" are orange and the "low ratings" are yellow. The yscale is 50 to 90, the point symbol is pch = 18, the size of the symbol is 1.5, the x-axis label is "Review Date", the y-axis label is "Cocoa Percentage", and the plot title is "Germany".
 legend('bottomright',legend=c('High Rating', 'Low Rating'),col=c('orange','yellow'),pch=18) #Adds a legend to the plot in the bottom right corner stating that high ratings are orange and low ratings are yellow
 ```
+
+#Question 2 
+Features that could be added to these graphics could include more informative titles, changing the colored data points to shapes would be beneficial for individuals with color blindness. 
+
+
+#Question 3
+```{r}
+barplot(table(recent_rating$Review.Date))
+barplot(table(choco$Review.Date))
+```
+Over the years there have been a consistent rise in the number of ratings given out. However, in recent years despite the positive upward trend there has been a fall in the number of ratings given out in in 2016 & 2017
