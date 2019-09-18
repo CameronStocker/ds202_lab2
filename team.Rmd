@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 choco <- read.csv("https://raw.githubusercontent.com/lbchu/ds202_labs/master/choco.csv")
 ```
 
-Question 1
+#Question 1
 
 ``` {r}
 recent_rating = choco[choco$Review.Date>2011,] #Creates new data frame with more recent reviews from the year 2012 and after
@@ -58,3 +58,14 @@ barplot(table(recent_rating$Review.Date))
 barplot(table(choco$Review.Date))
 ```
 Over the years there have been a consistent rise in the number of ratings given out. However, in recent years despite the positive upward trend there has been a fall in the number of ratings given out in in 2016 & 2017
+
+#Question 4
+```{r}
+sort(table(choco$Company.Location), decreasing = T)
+sort(table(choco$Company.Location), decreasing = T)
+top3countries = subset(choco, Company.Location == "U.S.A." | Company.Location == "France" | Company.Location == "Canada")
+top3countries$Company.Location = droplevels(top3countries$Company.Location)
+boxplot(top3countries$Rating ~ top3countries$Company.Location)
+```
+
+They all have similar ceilings, France and USA have the two lowest ratings. All of their means are very similar.
