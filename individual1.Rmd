@@ -1,0 +1,37 @@
+---
+title: "individual1"
+author: "Cameron Stocker"
+date: "9/18/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+``` {r}
+choco <- read.csv("https://raw.githubusercontent.com/lbchu/ds202_labs/master/choco.csv")
+head(choco)
+```
+
+Question 1
+
+Most of the ratings fall between 2 and 4 with some potential outliers below 2 and one above 5.
+```{r}
+boxplot(choco$Rating)
+```
+
+Question 2
+
+No, the ratings do not depend on the cocoa percentage of the chocolate bar as the scatter plot has no definitive shape.
+
+``` {r}
+plot(choco$Cocoa.Pct, choco$Rating)
+```
+
+Question 3
+
+The class is "factor". Factors have a set amount of "levels" that help you sort the variables whereas characters do not.
+
+```{r}
+class(choco$Company.Location)
+```
