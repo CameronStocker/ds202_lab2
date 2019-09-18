@@ -1,6 +1,6 @@
 ---
 title: "team"
-author: "Cameron Stocker"
+author: "Cameron Stocker & Tyler Kruzan"
 date: "9/18/2019"
 output: html_document
 ---
@@ -15,7 +15,7 @@ choco <- read.csv("https://raw.githubusercontent.com/lbchu/ds202_labs/master/cho
 
 #Question 1
 
-``` {r}
+```{r, echo=FALSE}
 recent_rating = choco[choco$Review.Date>2011,] #Creates new data frame with more recent reviews from the year 2012 and after
 
 unique(recent_rating$Company.Location) # NOTICE: how many countries are listed but how many levels are there? 
@@ -69,3 +69,21 @@ boxplot(top3countries$Rating ~ top3countries$Company.Location)
 ```
 
 They all have similar ceilings, France and USA have the two lowest ratings. All of their means are very similar.
+
+#Question 5
+Does `Specific.Bean.Origin` have any corellation with `Cocoa.Pct`?
+
+#Quesion 6
+```{r}
+plot(choco$Specific.Bean.Origin, choco$Cocoa.Pct)
+```
+Not sure how to answer this question, interesting errors. 
+
+#Submission In Canvas, each team submit an RMarkdown file and (just for insurance) the corresponding html. The file should include the following:
+
+a.  the names of the team members that worked on the document. Tyler Kruzan & Cameron Stocker
+b.  a link to the github repo you were working in, the owner’s Github repo name, and his/her username.
+(https://github.com/CameronStocker/ds202_lab2.git)
+We should be able to see individual1.Rmd, individual2.Rmd, team.Rmd (as well as the corresponding .html files) in the ds202_lab2 repository.
+code and answers (including graphics) to all of the questions.
+Due date: You have time until Thursday Sept. 19, 10 pm to submit the final files.
