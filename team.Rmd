@@ -19,29 +19,31 @@ Question 1
 recent_rating = choco[choco$Review.Date>2011,] #Creates new data frame with more recent reviews from the year 2012 and after
 
 unique(recent_rating$Company.Location) # NOTICE: how many countries are listed but how many levels are there? 
+#The unique function cuts out all duplicate values and also the levels that were zero. Explaining why it had less listed than levels.
 levels(recent_rating$Company.Location)
-recent_rating$Company.Location = droplevels(recent_rating$Company.Location)
-head(recent_rating)
+recent_rating$Company.Location = droplevels(recent_rating$Company.Location) #Creates a vector that drops the levels with 0 values.
 
-cross_table = table(recent_rating$Review.Date,recent_rating$Company.Location)
-cross_table
+head(recent_rating) #Prints the first 6 values of the updated vector
 
-which(cross_table[1,]!=0 & cross_table[2,]!=0 & cross_table[3,]!=0 & cross_table[4,]!=0 & cross_table[5,]!=0)
+cross_table = table(recent_rating$Review.Date,recent_rating$Company.Location) #Creates a new table that shows how many reviews were done in each country for each year
+cross_table #Prints the table
 
-france_recent = subset(recent_rating,Company.Location =='France')
-uk_recent = subset(recent_rating,Company.Location =='U.K.')
-germany_recent = subset(recent_rating,Company.Location=='Germany')
+which(cross_table[1,]!=0 & cross_table[2,]!=0 & cross_table[3,]!=0 & cross_table[4,]!=0 & cross_table[5,]!=0) #Prints the countries that had a review in each year
 
-par(mfrow=c(2,2))
-color1 = ifelse(france_recent$Rating >median(france_recent$Rating), 'blue', 'green')
-plot(france_recent$Cocoa.Pct ~ france_recent$Review.Date,ylim=c(50,90),col=color1,pch=18,cex=1.5,xlab="Review Date", ylab= "Cocoa Percentage", main= "France") 
-legend('bottomright',legend=c('High Rating', 'Low Rating'),col=c('blue','green'),pch=18)
+france_recent = subset(recent_rating,Company.Location =='France') #Creates a new data frame with reviews from only france
+uk_recent = subset(recent_rating,Company.Location =='U.K.') #Creates a new data frame with reviews from only the U.K.
+germany_recent = subset(recent_rating,Company.Location=='Germany') #Creates a new data frame with reviews from only Germany
 
-color2 = ifelse(uk_recent$Rating >median(uk_recent$Rating), 'purple', 'red')
-plot(uk_recent$Cocoa.Pct ~ uk_recent$Review.Date,ylim=c(50,90),col=color2,pch=18,cex=1.5, xlab="Review Date", ylab= "Cocoa Percentage", main= "UK")
-legend('bottomright',legend=c('High Rating', 'Low Rating'),col=c('purple','red'),pch=18)
+par(mfrow=c(2,2)) #Sets up the plots window so that there can by 4 plots on one window in a 2x2 format
+color1 = ifelse(france_recent$Rating >median(france_recent$Rating), 'blue', 'green') #Creates a vector of characters where it is "blue" if the rating is higher than the median and "green" if lower than the median
+plot(france_recent$Cocoa.Pct ~ france_recent$Review.Date,ylim=c(50,90),col=color1,pch=18,cex=1.5,xlab="Review Date", ylab= "Cocoa Percentage", main= "France") #Plots the cocoa percentages for France by year where the ones with "high ratings" are blue and the "low ratings" are green. The yscale is 50 to 90, the point symbol is pch = 18, the size of the symbol is 1.5, the x-axis label is "Review Date", the y-axis label is "Cocoa Percentage", and the plot title is "France".
+legend('bottomright',legend=c('High Rating', 'Low Rating'),col=c('blue','green'),pch=18) #Adds a legend to the plot in the bottom right corner stating that high ratings are blue and low ratings are green
 
-color3 = ifelse(germany_recent$Rating > median(germany_recent$Rating), 'orange', 'yellow')
-plot(germany_recent$Cocoa.Pct ~ germany_recent$Review.Date,ylim=c(50,90),col=color3,pch=18,cex=1.5,xlab="Review Date", ylab= "Cocoa Percentage", main= "Germany") 
-legend('bottomright',legend=c('High Rating', 'Low Rating'),col=c('orange','yellow'),pch=18)
+color2 = ifelse(uk_recent$Rating >median(uk_recent$Rating), 'purple', 'red') #Creates a vector of characters where it is "purple" if the rating is higher than the median and "red" if lower than the median
+plot(uk_recent$Cocoa.Pct ~ uk_recent$Review.Date,ylim=c(50,90),col=color2,pch=18,cex=1.5, xlab="Review Date", ylab= "Cocoa Percentage", main= "UK") #Plots the cocoa percentages for U.K. by year where the ones with "high ratings" are purple and the "low ratings" are red. The yscale is 50 to 90, the point symbol is pch = 18, the size of the symbol is 1.5, the x-axis label is "Review Date", the y-axis label is "Cocoa Percentage", and the plot title is "UK".
+legend('bottomright',legend=c('High Rating', 'Low Rating'),col=c('purple','red'),pch=18) #Adds a legend to the plot in the bottom right corner stating that high ratings are purple and low ratings are red
+
+color3 = ifelse(germany_recent$Rating > median(germany_recent$Rating), 'orange', 'yellow') #Creates a vector of characters where it is "orange" if the rating is higher than the median and "yellow" if lower than the median
+plot(germany_recent$Cocoa.Pct ~ germany_recent$Review.Date,ylim=c(50,90),col=color3,pch=18,cex=1.5,xlab="Review Date", ylab= "Cocoa Percentage", main= "Germany") #Plots the cocoa percentages for Germany by year where the ones with "high ratings" are orange and the "low ratings" are yellow. The yscale is 50 to 90, the point symbol is pch = 18, the size of the symbol is 1.5, the x-axis label is "Review Date", the y-axis label is "Cocoa Percentage", and the plot title is "Germany".
+legend('bottomright',legend=c('High Rating', 'Low Rating'),col=c('orange','yellow'),pch=18) #Adds a legend to the plot in the bottom right corner stating that high ratings are orange and low ratings are yellow
 ```
