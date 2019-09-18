@@ -1,0 +1,43 @@
+---
+title: "ds202_lab2"
+author: "Tyler Kruzan"
+date: "9/17/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Lab 2
+
+```{r}
+choco <- read.csv("https://raw.githubusercontent.com/lbchu/ds202_labs/master/choco.csv")
+head(choco)
+```
+
+## Individual Questions
+
+###1.How are ratings distributed? Don’t forget to mention outliers, if there are any.
+```{r}
+hist(choco$Rating, xlab = "Chocolate Rating", main = "Chocolate Ratings Histogram")
+boxplot(choco$Rating, xlab = "Chocolate Rating", main = "Chocolate Ratings Boxplot")
+```
+  
+  From what we can see in the histogram above is the there is a relatively strong bell curve or normal distribution of `Chocolate Rating`. he vast majority of ratings were in between 2.5 & 3.5. 
+  In the boxplot seen above there are some significant outliers: 4 ratings that landed under the 1st quartile and 1 rating that landed above the 3rd quartile. 
+
+
+###2.Do ratings depend on the cacao percentage of a chocolate bar?
+```{r}
+plot(choco$Cocoa.Pct, choco$Rating, xlab = "Chocolate Cocoa %", ylab = "Chocolate Rating")
+```
+  
+  From what can be seen in the scatter plot above, there does not appear to be a relationship between the `Cocoa %` and the `Rating` given to that specific chocolate. Some of the outliers that we can see here are that the highest and lowest rated chcocolate bars are both 70%. There is also a pretty even rating distribution for Cocoa %'s between 55 and 100%.
+  
+###3.What class is the variable representing company locations? How is this different from a ‘character’ variable? (You do not need to produce a graphic for this question.)
+```{r}
+class(choco$Company.Location)
+```
+  From the function I ran above you can see that the class of the `Company.Location` variable is that of a Factor, which is used to represent categorical data and be stored like that of an integer. 
+
